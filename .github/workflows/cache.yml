@@ -31,4 +31,4 @@ jobs:
       #     npm ci || echo "No package.json found, skipping install"
 
       - name: prime-cache-c28d152
-        run: echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
+        run: echo "Cache result:${{ steps.cache.outputs.cache-hit }}"
