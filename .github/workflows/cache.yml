@@ -16,17 +16,19 @@ jobs:
       - name: 21f3000340@ds.study.iitm.ac.in
         run: echo "This step name contains the requested email."
 
+      # Cache step
       - name: Restore cache
         id: cache
         uses: actions/cache@v4
         with:
-          path: ~/.npm
+          path: ~/.dummy-cache
           key: cache-c28d152
 
-      - name: Configure npm cache & Install deps
-        run: |
-          npm config set cache ~/.npm --global
-          npm ci || echo "No package.json found, skipping install"
+      # Optional: install dependencies (commented out if not using Node)
+      # - name: Configure npm cache & Install deps
+      #   run: |
+      #     npm config set cache ~/.npm
+      #     npm ci || echo "No package.json found, skipping install"
 
       - name: prime-cache-c28d152
-        run: echo "Cache result:${{ steps.cache.outputs.cache-hit }}"
+        run: echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
