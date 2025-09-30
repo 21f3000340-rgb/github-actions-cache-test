@@ -1,0 +1,32 @@
+name: Cache Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 21f3000340@ds.study.iitm.ac.in
+        run: echo "This step name contains the requested email."
+
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: cache-c28d152
+
+      - name: Configure npm cache & Install deps
+        run: |
+          npm config set cache ~/.npm --global
+          npm ci
+
+      - name: prime-cache-c28d152
+        run: echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
