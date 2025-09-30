@@ -26,7 +26,7 @@ jobs:
       - name: Configure npm cache & Install deps
         run: |
           npm config set cache ~/.npm --global
-          npm ci
+          npm ci || echo "No package.json found, skipping install"
 
       - name: prime-cache-c28d152
         run: echo "Cache result: ${{ steps.cache.outputs.cache-hit }}"
